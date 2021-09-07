@@ -1,0 +1,10 @@
+name: SpecialBoots
+version: ${project.version}
+main: com.francobm.specialboots.SpecialBoots
+authors: [ FrancoBM ]
+description: Special boots with a touch of... magic?
+commands:
+  specialboots:
+    description: list of commands
+    usage: /<command>
+    aliases: [sb, sboots, boots, specialb]
