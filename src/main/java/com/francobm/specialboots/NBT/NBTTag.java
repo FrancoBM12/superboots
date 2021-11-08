@@ -1,6 +1,5 @@
 package com.francobm.specialboots.NBT;
 
-import com.avaje.ebean.validation.NotNull;
 import com.francobm.specialboots.SpecialBoots;
 import com.francobm.specialboots.utils.UtilsSB;
 import org.bukkit.Bukkit;
@@ -84,7 +83,6 @@ public class NBTTag {
         return r == null ? null : new NBTTag(r);
     }
 
-    @NotNull
     public NBTTag getCompound(String key){
         NBTTag nbt = getCompoundNullable(key);
         return nbt == null ? null : new NBTTag();
@@ -134,7 +132,6 @@ public class NBTTag {
         }
     }
 
-    @NotNull
     public NBTList getList(String key){
         NBTList nbt = getListNullable(key);
         return nbt == null ? null : new NBTList();

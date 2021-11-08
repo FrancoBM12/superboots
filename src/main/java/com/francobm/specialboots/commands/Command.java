@@ -3,6 +3,7 @@ package com.francobm.specialboots.commands;
 import com.francobm.specialboots.NBT.NBTTag;
 import com.francobm.specialboots.boots.Boots;
 import com.francobm.specialboots.utils.UtilsSB;
+import com.francobm.specialboots.utils.XMaterial;
 import org.bukkit.Material;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -33,7 +34,7 @@ public class Command implements CommandExecutor {
                     }
                     try {
                         Boots boots = Boots.valueOf(args[1].toUpperCase());
-                        if(player.hasPermission("specialboots.set."+boots) || player.hasPermission("specialboots.*")){
+                        if(player.hasPermission("specialboots.set."+boots.name()) || player.hasPermission("specialboots.*")){
                             NBTTag bCompound = NBTTag.get(itemInHand);
                             switch (boots) {
                                 case FLYING_BOOTS:
@@ -128,60 +129,60 @@ public class Command implements CommandExecutor {
                 if (args.length >= 2) {
                     try {
                         Boots boots = Boots.valueOf(args[1].toUpperCase());
-                        if(player.hasPermission("specialboots.give."+boots) || player.hasPermission("specialboots.*")){
+                        if(player.hasPermission("specialboots.give."+boots.name()) || player.hasPermission("specialboots.*")){
                             ItemStack b;
                             switch (boots) {
                                 case FLYING_BOOTS:
-                                    b = new ItemStack(Material.DIAMOND_BOOTS);
+                                    b = XMaterial.DIAMOND_BOOTS.parseItem();
                                     NBTTag bCompound = NBTTag.get(b);
                                     bCompound.setString("superboots-fly", "1");
                                     player.getInventory().addItem(bCompound.apply(b));
                                     player.sendMessage(UtilsSB.ChatColor("&aObtaining flying boots"));
                                     break;
                                 case RESISTANCE_BOOTS:
-                                    b = new ItemStack(Material.DIAMOND_BOOTS);
+                                    b = XMaterial.DIAMOND_BOOTS.parseItem();
                                     bCompound = NBTTag.get(b);
                                     bCompound.setString("superboots-resistance", "1");
                                     player.getInventory().addItem(bCompound.apply(b));
                                     player.sendMessage(UtilsSB.ChatColor("&aObtaining resistance boots"));
                                     break;
                                 case ANTI_HUNGER_BOOTS:
-                                    b = new ItemStack(Material.DIAMOND_BOOTS);
+                                    b = XMaterial.DIAMOND_BOOTS.parseItem();
                                     bCompound = NBTTag.get(b);
                                     bCompound.setString("superboots-anti-hunger", "1");
                                     player.getInventory().addItem(bCompound.apply(b));
                                     player.sendMessage(UtilsSB.ChatColor("&aObtaining Anti Hunger boots"));
                                     break;
                                 case INVISIBLE_BOOTS:
-                                    b = new ItemStack(Material.DIAMOND_BOOTS);
+                                    b = XMaterial.DIAMOND_BOOTS.parseItem();
                                     bCompound = NBTTag.get(b);
                                     bCompound.setString("superboots-invisible", "1");
                                     player.getInventory().addItem(bCompound.apply(b));
                                     player.sendMessage(UtilsSB.ChatColor("&aObtaining Invisible boots"));
                                     break;
                                 case SPEED_BOOTS:
-                                    b = new ItemStack(Material.DIAMOND_BOOTS);
+                                    b = XMaterial.DIAMOND_BOOTS.parseItem();
                                     bCompound = NBTTag.get(b);
                                     bCompound.setString("superboots-speed", "1");
                                     player.getInventory().addItem(bCompound.apply(b));
                                     player.sendMessage(UtilsSB.ChatColor("&aObtaining Invisible boots"));
                                     break;
                                 case MINER_BOOTS:
-                                    b = new ItemStack(Material.DIAMOND_BOOTS);
+                                    b = XMaterial.DIAMOND_BOOTS.parseItem();
                                     bCompound = NBTTag.get(b);
                                     bCompound.setString("superboots-miner", "1");
                                     player.getInventory().addItem(bCompound.apply(b));
                                     player.sendMessage(UtilsSB.ChatColor("&aObtaining Miner boots"));
                                     break;
                                 case JUMP_BOOTS:
-                                    b = new ItemStack(Material.DIAMOND_BOOTS);
+                                    b = XMaterial.DIAMOND_BOOTS.parseItem();
                                     bCompound = NBTTag.get(b);
                                     bCompound.setString("superboots-jump", "1");
                                     player.getInventory().addItem(bCompound.apply(b));
                                     player.sendMessage(UtilsSB.ChatColor("&aObtaining Miner boots"));
                                     break;
                                 case DEFENCE_BOOTS:
-                                    b = new ItemStack(Material.DIAMOND_BOOTS);
+                                    b = XMaterial.DIAMOND_BOOTS.parseItem();
                                     bCompound = NBTTag.get(b);
                                     bCompound.setString("superboots-defence", "1");
                                     player.getInventory().addItem(bCompound.apply(b));
@@ -212,14 +213,11 @@ public class Command implements CommandExecutor {
     }
 
     public boolean isBoots(ItemStack itemStack){
-        switch (itemStack.getType()){
-            case LEATHER_BOOTS:
-            case CHAINMAIL_BOOTS:
-            case GOLD_BOOTS:
-            case IRON_BOOTS:
-            case DIAMOND_BOOTS:
-                return true;
-        }
-        return false;
+        if(itemStack.getType() == XMaterial.LEATHER_BOOTS.parseMaterial()) return true;
+        if(itemStack.getType() == XMaterial.CHAINMAIL_BOOTS.parseMaterial()) return true;
+        if(itemStack.getType() == XMaterial.GOLDEN_BOOTS.parseMaterial()) return true;
+        if(itemStack.getType() == XMaterial.IRON_BOOTS.parseMaterial()) return true;
+        if(itemStack.getType() == XMaterial.DIAMOND_BOOTS.parseMaterial()) return true;
+        return itemStack.getType() == XMaterial.NETHERITE_BOOTS.parseMaterial();
     }
 }
