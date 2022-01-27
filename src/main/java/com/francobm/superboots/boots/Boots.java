@@ -1,4 +1,4 @@
-package com.francobm.specialboots.boots;
+package com.francobm.superboots.boots;
 
 public enum Boots {
     FLYING_BOOTS,

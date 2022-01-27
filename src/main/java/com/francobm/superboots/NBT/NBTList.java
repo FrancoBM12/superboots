@@ -1,7 +1,7 @@
-package com.francobm.specialboots.NBT;
+package com.francobm.superboots.NBT;
 
-import com.francobm.specialboots.SpecialBoots;
-import com.francobm.specialboots.utils.UtilsSB;
+import com.francobm.superboots.SuperBoots;
+import com.francobm.superboots.utils.UtilsSB;
 import org.bukkit.Bukkit;
 
 import java.lang.reflect.Array;
@@ -39,7 +39,7 @@ public class NBTList {
         }
         catch(Exception ex){
             ex.printStackTrace();
-            Bukkit.getPluginManager().disablePlugin(SpecialBoots.getPlugin(SpecialBoots.class));
+            Bukkit.getPluginManager().disablePlugin(SuperBoots.getPlugin(SuperBoots.class));
         }
     }
 

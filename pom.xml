@@ -5,13 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.francobm</groupId>
-    <artifactId>SpecialBoots</artifactId>
-    <version>1.7-SNAPSHOT</version>
+    <artifactId>SuperBoots</artifactId>
+    <version>1.8-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>FlightBoots</name>
+    <name>SuperBoots</name>
 
-    <description>Boots that allow you to fly</description>
+    <description>Super boots for you server.</description>
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

@@ -1,4 +1,4 @@
-package com.francobm.specialboots.utils;
+package com.francobm.superboots.utils;
 
 /*
  * The MIT License (MIT)

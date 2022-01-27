@@ -1,10 +1,10 @@
-package com.francobm.specialboots.commands;
+package com.francobm.superboots.commands;
 
-import com.francobm.specialboots.NBT.NBTTag;
-import com.francobm.specialboots.boots.Boots;
-import com.francobm.specialboots.utils.UtilsSB;
-import com.francobm.specialboots.utils.XMaterial;
-import org.bukkit.Material;
+import com.francobm.superboots.NBT.NBTTag;
+import com.francobm.superboots.SuperBoots;
+import com.francobm.superboots.boots.Boots;
+import com.francobm.superboots.utils.UtilsSB;
+import com.francobm.superboots.utils.XMaterial;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
@@ -12,6 +12,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 public class Command implements CommandExecutor {
+    private final SuperBoots plugin;
+
+    public Command(SuperBoots plugin){
+        this.plugin = plugin;
+    }
     @Override
     public boolean onCommand(CommandSender sender, org.bukkit.command.Command cmd, String label, String[] args) {
         if(sender instanceof ConsoleCommandSender) {
@@ -23,24 +28,24 @@ public class Command implements CommandExecutor {
                 // /boots set {type} - specialboots.set.*
                 if (args.length >= 2) {
                     ItemStack itemInHand = player.getInventory().getItemInHand();
-                    if(itemInHand == null){
-                        player.sendMessage(UtilsSB.ChatColor("&cYou need to have an item in hand"));
+                    if(itemInHand.getType() == XMaterial.AIR.parseMaterial()){
+                        player.sendMessage(plugin.prefix + plugin.getConfig().getString("messages.itemAir"));
                         return true;
                     }
 
                     if(!isBoots(itemInHand)){
-                        player.sendMessage(UtilsSB.ChatColor("&cThe item in hand needs to be a boot!"));
+                        player.sendMessage(plugin.prefix + plugin.getConfig().getString("messages.itemNotBoots"));
                         return true;
                     }
                     try {
                         Boots boots = Boots.valueOf(args[1].toUpperCase());
-                        if(player.hasPermission("specialboots.set."+boots.name()) || player.hasPermission("specialboots.*")){
+                        if(player.hasPermission("superboots.set."+boots.name()) || player.hasPermission("superboots.*")){
                             NBTTag bCompound = NBTTag.get(itemInHand);
                             switch (boots) {
                                 case FLYING_BOOTS:
                                     //net.minecraft.world.item.ItemStack nmsB = CraftItemStack.asNMSCopy(itemInHand);
                                     if(bCompound.getString("superboots-fly").equalsIgnoreCase("1")){
-                                        player.sendMessage(UtilsSB.ChatColor("&cThis boot is already special!"));
+                                        player.sendMessage(plugin.prefix + plugin.getConfig().getString("messages.itemAlreadySpecial"));
                                         return true;
                                     }
 
@@ -51,7 +56,7 @@ public class Command implements CommandExecutor {
                                     break;
                                 case RESISTANCE_BOOTS:
                                     if(bCompound.getString("superboots-resistance").equalsIgnoreCase("1")){
-                                        player.sendMessage(UtilsSB.ChatColor("&cThis boot is already special!"));
+                                        player.sendMessage(plugin.prefix + plugin.getConfig().getString("messages.itemAlreadySpecial"));
                                         return true;
                                     }
                                     bCompound.setString("superboots-resistance", "1");
@@ -60,7 +65,7 @@ public class Command implements CommandExecutor {
                                     break;
                                 case ANTI_HUNGER_BOOTS:
                                     if(bCompound.getString("superboots-anti-hunger").equalsIgnoreCase("1")){
-                                        player.sendMessage(UtilsSB.ChatColor("&cThis boot is already special!"));
+                                        player.sendMessage(plugin.prefix + plugin.getConfig().getString("messages.itemAlreadySpecial"));
                                         return true;
                                     }
                                     bCompound.setString("superboots-anti-hunger", "1");
@@ -69,7 +74,7 @@ public class Command implements CommandExecutor {
                                     break;
                                 case INVISIBLE_BOOTS:
                                     if(bCompound.getString("superboots-invisible").equalsIgnoreCase("1")){
-                                        player.sendMessage(UtilsSB.ChatColor("&cThis boot is already special!"));
+                                        player.sendMessage(plugin.prefix + plugin.getConfig().getString("messages.itemAlreadySpecial"));
                                         return true;
                                     }
                                     bCompound.setString("superboots-invisible", "1");
@@ -78,7 +83,7 @@ public class Command implements CommandExecutor {
                                     break;
                                 case SPEED_BOOTS:
                                     if(bCompound.getString("superboots-speed").equalsIgnoreCase("1")){
-                                        player.sendMessage(UtilsSB.ChatColor("&cThis boot is already special!"));
+                                        player.sendMessage(plugin.prefix + plugin.getConfig().getString("messages.itemAlreadySpecial"));
                                         return true;
                                     }
                                     bCompound.setString("superboots-speed", "1");
@@ -87,7 +92,7 @@ public class Command implements CommandExecutor {
                                     break;
                                 case MINER_BOOTS:
                                     if(bCompound.getString("superboots-miner").equalsIgnoreCase("1")){
-                                        player.sendMessage(UtilsSB.ChatColor("&cThis boot is already special!"));
+                                        player.sendMessage(plugin.prefix + plugin.getConfig().getString("messages.itemAlreadySpecial"));
                                         return true;
                                     }
                                     bCompound.setString("superboots-miner", "1");
@@ -96,7 +101,7 @@ public class Command implements CommandExecutor {
                                     break;
                                 case JUMP_BOOTS:
                                     if(bCompound.getString("superboots-jump").equalsIgnoreCase("1")){
-                                        player.sendMessage(UtilsSB.ChatColor("&cThis boot is already special!"));
+                                        player.sendMessage(plugin.prefix + plugin.getConfig().getString("messages.itemAlreadySpecial"));
                                         return true;
                                     }
                                     bCompound.setString("superboots-jump", "1");
@@ -105,7 +110,7 @@ public class Command implements CommandExecutor {
                                     break;
                                 case DEFENCE_BOOTS:
                                     if(bCompound.getString("superboots-defence").equalsIgnoreCase("1")){
-                                        player.sendMessage(UtilsSB.ChatColor("&cThis boot is already special!"));
+                                        player.sendMessage(plugin.prefix + plugin.getConfig().getString("messages.itemAlreadySpecial"));
                                         return true;
                                     }
                                     bCompound.setString("superboots-defence", "1");
@@ -114,7 +119,7 @@ public class Command implements CommandExecutor {
                                     break;
                             }
                         }else{
-                            player.sendMessage(UtilsSB.ChatColor("You do not have permission to set this type of special boots(specialboots.set."+boots+")"));
+                            player.sendMessage(UtilsSB.ChatColor("You do not have permission to set this type of special boots(superboots.set."+boots+")"));
                         }
                         return true;
                     } catch (IllegalArgumentException exception) {
@@ -122,14 +127,14 @@ public class Command implements CommandExecutor {
                     }
                     return true;
                 }
-                player.sendMessage(UtilsSB.ChatColor("&cUsage /" + cmd.getName() + " set {type}"));
+                player.sendMessage(plugin.prefix + plugin.getConfig().getString("messages.set-usage"));
                 return true;
             }else if (args[0].equalsIgnoreCase("give")) {
                 // /boots give {type}
                 if (args.length >= 2) {
                     try {
                         Boots boots = Boots.valueOf(args[1].toUpperCase());
-                        if(player.hasPermission("specialboots.give."+boots.name()) || player.hasPermission("specialboots.*")){
+                        if(player.hasPermission("superboots.give."+boots.name()) || player.hasPermission("superboots.*")){
                             ItemStack b;
                             switch (boots) {
                                 case FLYING_BOOTS:
@@ -190,7 +195,7 @@ public class Command implements CommandExecutor {
                                     break;
                             }
                         }else{
-                            player.sendMessage(UtilsSB.ChatColor("You do not have permission to set this type of special boots(specialboots.give."+boots+")"));
+                            player.sendMessage(UtilsSB.ChatColor("You do not have permission to set this type of special boots(superboots.give."+boots+")"));
                         }
                         return true;
                     } catch (IllegalArgumentException exception) {
@@ -198,18 +203,28 @@ public class Command implements CommandExecutor {
                     }
                     return true;
                 }
-                player.sendMessage(UtilsSB.ChatColor("&cUsage /" + label + " give {type}"));
+                player.sendMessage(plugin.prefix + plugin.getConfig().getString("messages.give-usage"));
                 return true;
+            }else if(args[0].equalsIgnoreCase("reload")){
+                if(!player.hasPermission("superboots.*") || !player.hasPermission("superboots.reload")) return true;
+                plugin.getConfig().reload();
+                plugin.prefix = plugin.getConfig().getString("messages.prefix");
+                player.sendMessage(plugin.prefix + plugin.getConfig().getString("messages.reload"));
             }
             return true;
         }
-        helpCommand(player, label);
+        helpCommand(player);
         return true;
     }
 
-    public void helpCommand(Player player, String cmd){
-        player.sendMessage(UtilsSB.ChatColor("&b/" + cmd + " give {type}"));
-        player.sendMessage(UtilsSB.ChatColor("&b/" + cmd + " set {type}"));
+    public void helpCommand(Player player){
+        if(!player.hasPermission("superboots.*") || !player.hasPermission("superboots.help")){
+            player.sendMessage(plugin.prefix + plugin.getConfig().getStringList("messages.no-permission"));
+            return;
+        }
+        for(String string : plugin.getConfig().getStringList("messages.help")){
+            player.sendMessage(string);
+        }
     }
 
     public boolean isBoots(ItemStack itemStack){
@@ -218,6 +233,7 @@ public class Command implements CommandExecutor {
         if(itemStack.getType() == XMaterial.GOLDEN_BOOTS.parseMaterial()) return true;
         if(itemStack.getType() == XMaterial.IRON_BOOTS.parseMaterial()) return true;
         if(itemStack.getType() == XMaterial.DIAMOND_BOOTS.parseMaterial()) return true;
-        return itemStack.getType() == XMaterial.NETHERITE_BOOTS.parseMaterial();
+        if(itemStack.getType() == XMaterial.NETHERITE_BOOTS.parseMaterial()) return true;
+        return false;
     }
 }

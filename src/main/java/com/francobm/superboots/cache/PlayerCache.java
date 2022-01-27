@@ -1,4 +1,4 @@
-package com.francobm.specialboots.cache;
+package com.francobm.superboots.cache;
 
 import org.bukkit.entity.Player;
 
@@ -8,6 +8,8 @@ import java.util.Map;
 public class PlayerCache {
     private static final Map<String, PlayerCache> players = new HashMap<>();
     private final Player player;
+    private boolean boots;
+    private boolean defence;
     private boolean flight;
     private boolean saveFlight;
 
@@ -15,6 +17,8 @@ public class PlayerCache {
     public PlayerCache(Player player) {
         this.player = player;
         this.flight = false;
+        this.defence = false;
+        this.boots = false;
         saveFlight = false;
     }
 
@@ -66,5 +70,21 @@ public class PlayerCache {
 
     public void setSaveFlight(boolean saveFlight) {
         this.saveFlight = saveFlight;
+    }
+
+    public boolean isDefence() {
+        return defence;
+    }
+
+    public void setDefence(boolean defence) {
+        this.defence = defence;
+    }
+
+    public boolean isBoots() {
+        return boots;
+    }
+
+    public void setBoots(boolean boots) {
+        this.boots = boots;
     }
 }

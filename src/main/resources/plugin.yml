@@ -1,10 +1,11 @@
-name: SpecialBoots
+name: SuperBoots
 version: ${project.version}
-main: com.francobm.specialboots.SpecialBoots
+main: com.francobm.superboots.SuperBoots
 authors: [ FrancoBM ]
-description: Special boots with a touch of... magic?
+api-version: 1.13
+description: Super boots with a touch of... magic?
 commands:
-  specialboots:
+  superboots:
     description: list of commands
     usage: /<command>
-    aliases: [sb, sboots, boots, specialb]
+    aliases: [sb, sboots, boots, superb]

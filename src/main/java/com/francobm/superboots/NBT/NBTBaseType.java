@@ -1,6 +1,6 @@
-package com.francobm.specialboots.NBT;
+package com.francobm.superboots.NBT;
 
-import com.francobm.specialboots.utils.UtilsSB;
+import com.francobm.superboots.utils.UtilsSB;
 import org.bukkit.Bukkit;
 
 import java.lang.reflect.Constructor;

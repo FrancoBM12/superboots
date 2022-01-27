@@ -1,8 +1,8 @@
-package com.francobm.specialboots.listeners;
+package com.francobm.superboots.listeners;
 
-import com.francobm.specialboots.NBT.NBTTag;
-import com.francobm.specialboots.cache.PlayerCache;
-import com.francobm.specialboots.utils.UtilsSB;
+import com.francobm.superboots.NBT.NBTTag;
+import com.francobm.superboots.cache.PlayerCache;
+import com.francobm.superboots.utils.UtilsSB;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
@@ -12,12 +12,8 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
-import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
-
-import java.util.Objects;
 
 public class Boots implements Listener {
 

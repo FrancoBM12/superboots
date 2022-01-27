@@ -1,0 +1,28 @@
+messages-enabled: true
+messages:
+  prefix: '&b[SuperBoots] '
+  reload: '&athe configuration has been reloaded successfully.'
+  no-permission: '&cyou dont have permission to use this command'
+  itemAir: '&cYou need to have an item in hand'
+  itemNotBoots: '&cThe item in hand needs to be a boot!'
+  itemAlreadySpecial: '&cThis boot is already special!'
+  set-usage: '&cUsage: /superboots set <type>'
+  give-usage: '&cUsage: /superboots give <type>'
+  equip-boots: '&ayou have equipped some super boots that contain: %specials%'
+  unequip-boots: '&cyou have unequipped some super boots that contain: %specials%'
+  names:
+    flight: '&eflight'
+    invisibility: '&einvisibility'
+    speed: '&espeed'
+    anti-hunger: '&eanti-hunger'
+    resistance: '&eresistance'
+    miner: '&eminer'
+    jump: '&ejump'
+    defence: '&edefence'
+  help:
+    - '&f&m       &r  &bSuperBoots  &f&m       '
+    - '&7- /superboots or /sb - &fshow help messages!'
+    - '&7- /superboots set <type> - &fSet the specialty to the boot you have in your hand.!'
+    - '&7- /superboots give <type> - &fgives you a boot with the specialty you selected.!'
+    - '&7- /superboots reload - &freload the config file!'
+    - '&f&m       &r  &bSuperBoots  &f&m       '

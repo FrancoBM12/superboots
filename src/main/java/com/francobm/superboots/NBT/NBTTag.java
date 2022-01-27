@@ -1,7 +1,7 @@
-package com.francobm.specialboots.NBT;
+package com.francobm.superboots.NBT;
 
-import com.francobm.specialboots.SpecialBoots;
-import com.francobm.specialboots.utils.UtilsSB;
+import com.francobm.superboots.SuperBoots;
+import com.francobm.superboots.utils.UtilsSB;
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.ItemStack;
 
@@ -40,7 +40,7 @@ public class NBTTag {
         }
         catch(Exception ex){
             ex.printStackTrace();
-            Bukkit.getPluginManager().disablePlugin(SpecialBoots.getPlugin(SpecialBoots.class));
+            Bukkit.getPluginManager().disablePlugin(SuperBoots.getPlugin(SuperBoots.class));
         }
     }
 
@@ -76,6 +76,13 @@ public class NBTTag {
     }
 
     public NBTTag getCompoundThrows(String key) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException{
+        if(UtilsSB.superiorVersion()){ //> 1.18
+            Method m = tagCompoundClass.getMethod("p", String.class);
+            m.setAccessible(true);
+            Object r = m.invoke(this.tagCompund, key);
+            m.setAccessible(false);
+            return r == null ? null : new NBTTag(r);
+        }
         Method m = tagCompoundClass.getMethod("getCompound", String.class);
         m.setAccessible(true);
         Object r = m.invoke(this.tagCompund, key);
@@ -99,6 +106,14 @@ public class NBTTag {
     }
 
     public NBTList getListThrows(String key)  throws NoSuchMethodException, InvocationTargetException, IllegalAccessException{
+        if(UtilsSB.superiorVersion()) { //> 1.18
+            Method m = tagCompoundClass.getMethod("c", String.class);
+            m.setAccessible(true);
+            Object r = m.invoke(this.tagCompund, key);
+            m.setAccessible(false);
+            return r == null ? null : new NBTList(r);
+        }
+
         Method m = tagCompoundClass.getMethod("get", String.class);
         m.setAccessible(true);
         Object r = m.invoke(this.tagCompund, key);
@@ -139,6 +154,13 @@ public class NBTTag {
 
     public String getString(String key){
         try{
+            if(UtilsSB.superiorVersion()) { //> 1.18
+                Method m = tagCompoundClass.getMethod("l", String.class);
+                m.setAccessible(true);
+                Object r = m.invoke(this.tagCompund, key);
+                m.setAccessible(false);
+                return r instanceof String ? (String) r : null;
+            }
             Method m = tagCompoundClass.getMethod("getString", String.class);
             m.setAccessible(true);
             Object r = m.invoke(this.tagCompund, key);
@@ -153,6 +175,13 @@ public class NBTTag {
 
     public void setString(String key, String value){
         try{
+            if(UtilsSB.superiorVersion()) { //> 1.18
+                Method m = tagCompoundClass.getMethod("a", String.class, String.class);
+                m.setAccessible(true);
+                m.invoke(this.tagCompund, key, value);
+                m.setAccessible(false);
+                return;
+            }
             Method m = tagCompoundClass.getMethod("setString", String.class, String.class);
             m.setAccessible(true);
             m.invoke(this.tagCompund, key, value);
@@ -165,6 +194,13 @@ public class NBTTag {
 
     public Integer getInt(String key){
         try{
+            if(UtilsSB.superiorVersion()) { //> 1.18
+                Method m = tagCompoundClass.getMethod("h", String.class);
+                m.setAccessible(true);
+                Object r = m.invoke(this.tagCompund, key);
+                m.setAccessible(false);
+                return r instanceof Integer ? (Integer) r : null;
+            }
             Method m = tagCompoundClass.getMethod("getInt", String.class);
             m.setAccessible(true);
             Object r = m.invoke(this.tagCompund, key);
@@ -179,6 +215,13 @@ public class NBTTag {
 
     public void setInt(String key, Integer value){
         try{
+            if(UtilsSB.superiorVersion()) { //> 1.18
+                Method m = tagCompoundClass.getMethod("a", String.class, int.class);
+                m.setAccessible(true);
+                m.invoke(this.tagCompund, key, value);
+                m.setAccessible(false);
+                return;
+            }
             Method m = tagCompoundClass.getMethod("setInt", String.class, int.class);
             m.setAccessible(true);
             m.invoke(this.tagCompund, key, value);
@@ -191,6 +234,13 @@ public class NBTTag {
 
     public void setShort(String key, Short value){
         try{
+            if(UtilsSB.superiorVersion()) { //> 1.18
+                Method m = tagCompoundClass.getMethod("a", String.class, short.class);
+                m.setAccessible(true);
+                m.invoke(this.tagCompund, key, value);
+                m.setAccessible(false);
+                return;
+            }
             Method m = tagCompoundClass.getMethod("setShort", String.class, short.class);
             m.setAccessible(true);
             m.invoke(this.tagCompund, key, value);
@@ -203,6 +253,13 @@ public class NBTTag {
 
     public void setBoolean(String key, Boolean value){
         try{
+            if(UtilsSB.superiorVersion()) { //> 1.18
+                Method m = tagCompoundClass.getMethod("a", String.class, boolean.class);
+                m.setAccessible(true);
+                m.invoke(this.tagCompund, key, value);
+                m.setAccessible(false);
+                return;
+            }
             Method m = tagCompoundClass.getMethod("setBoolean", String.class, boolean.class);
             m.setAccessible(true);
             m.invoke(this.tagCompund, key, value);
@@ -215,6 +272,13 @@ public class NBTTag {
 
     public void setDouble(String key, Double value){
         try{
+            if(UtilsSB.superiorVersion()) { //> 1.18
+                Method m = tagCompoundClass.getMethod("a", String.class, double.class);
+                m.setAccessible(true);
+                m.invoke(this.tagCompund, key, value);
+                m.setAccessible(false);
+                return;
+            }
             Method m = tagCompoundClass.getMethod("setDouble", String.class, double.class);
             m.setAccessible(true);
             m.invoke(this.tagCompund, key, value);
@@ -227,6 +291,13 @@ public class NBTTag {
 
     public Long getLong(String key){
         try{
+            if(UtilsSB.superiorVersion()) { //> 1.18
+                Method m = tagCompoundClass.getMethod("i", String.class);
+                m.setAccessible(true);
+                Object r = m.invoke(this.tagCompund, key);
+                m.setAccessible(false);
+                return r instanceof Long ? (Long) r : null;
+            }
             Method m = tagCompoundClass.getMethod("getLong", String.class);
             m.setAccessible(true);
             Object r = m.invoke(this.tagCompund, key);
@@ -241,6 +312,13 @@ public class NBTTag {
 
     public void setLong(String key, Long value){
         try{
+            if(UtilsSB.superiorVersion()) { //> 1.18
+                Method m = tagCompoundClass.getMethod("a", String.class, long.class);
+                m.setAccessible(true);
+                m.invoke(this.tagCompund, key, value);
+                m.setAccessible(false);
+                return;
+            }
             Method m = tagCompoundClass.getMethod("setLong", String.class, long.class);
             m.setAccessible(true);
             m.invoke(this.tagCompund, key, value);
@@ -253,6 +331,13 @@ public class NBTTag {
 
     public void set(String key, NBTTag value){
         try{
+            if(UtilsSB.superiorVersion()) { //> 1.18
+                Method m = tagCompoundClass.getMethod("a", String.class, nbtBaseClass);
+                m.setAccessible(true);
+                m.invoke(this.tagCompund, key, value.tagCompund);
+                m.setAccessible(false);
+                return;
+            }
             Method m = tagCompoundClass.getMethod("set", String.class, nbtBaseClass);
             m.setAccessible(true);
             m.invoke(this.tagCompund, key, value.tagCompund);
@@ -265,6 +350,13 @@ public class NBTTag {
 
     public void set(String key, NBTList value){
         try{
+            if(UtilsSB.superiorVersion()) { //> 1.18
+                Method m = tagCompoundClass.getMethod("a", String.class, nbtBaseClass);
+                m.setAccessible(true);
+                m.invoke(this.tagCompund, key, value.getTagList());
+                m.setAccessible(false);
+                return;
+            }
             Method m = tagCompoundClass.getMethod("set", String.class, nbtBaseClass);
             m.setAccessible(true);
             m.invoke(this.tagCompund, key, value.getTagList());
@@ -277,6 +369,14 @@ public class NBTTag {
 
     public void set(String key, NBTBaseType type, Object value){
         try{
+            if(UtilsSB.superiorVersion()) { //> 1.18
+                Object toPut = type.make(value);
+                Method m = tagCompoundClass.getMethod("a", String.class, nbtBaseClass);
+                m.setAccessible(true);
+                m.invoke(this.tagCompund, key, toPut);
+                m.setAccessible(false);
+                return;
+            }
             Object toPut = type.make(value);
             Method m = tagCompoundClass.getMethod("set", String.class, nbtBaseClass);
             m.setAccessible(true);
@@ -291,6 +391,19 @@ public class NBTTag {
 
     public void setStrings(Map<String, String> map){
         try{
+            if(UtilsSB.superiorVersion()) { //> 1.18
+                Method m = tagCompoundClass.getMethod("a", String.class, String.class);
+                m.setAccessible(true);
+                map.forEach((String key, String value) -> {
+                    try{
+                        m.invoke(this.tagCompund, key, value);
+                    }
+                    catch(Exception ex){ex.printStackTrace();}
+                });
+
+                m.setAccessible(false);
+                return;
+            }
             Method m = tagCompoundClass.getMethod("setString", String.class, String.class);
             m.setAccessible(true);
             map.forEach((String key, String value) -> {
@@ -309,6 +422,14 @@ public class NBTTag {
 
     public boolean hasKey(String key){
         try{
+            if(UtilsSB.superiorVersion()) { //> 1.18
+                Method m = tagCompoundClass.getMethod("e", String.class);
+                m.setAccessible(true);
+                Object o = m.invoke(this.tagCompund, key);
+                m.setAccessible(false);
+
+                return o instanceof Boolean && (Boolean) o;
+            }
             Method m = tagCompoundClass.getMethod("hasKey", String.class);
             m.setAccessible(true);
             Object o = m.invoke(this.tagCompund, key);
@@ -324,6 +445,24 @@ public class NBTTag {
 
     public ItemStack apply(ItemStack item){
         try{
+            if(UtilsSB.superiorVersion()) { //> 1.18
+                Method nmsGet = craftItemstackClass.getMethod("asNMSCopy", ItemStack.class);
+                nmsGet.setAccessible(true);
+                Object nmsStack = nmsGet.invoke(null, item);
+                nmsGet.setAccessible(false);
+
+                Method nbtSet = nmsItemstackClass.getMethod("c", tagCompoundClass);
+                nbtSet.setAccessible(true);
+                nbtSet.invoke(nmsStack, this.tagCompund);
+                nbtSet.setAccessible(false);
+
+                Method m = craftItemstackClass.getMethod("asBukkitCopy", nmsItemstackClass);
+                m.setAccessible(true);
+                Object o = m.invoke(null, nmsStack);
+                m.setAccessible(false);
+
+                return o instanceof ItemStack ? (ItemStack) o : null;
+            }
             Method nmsGet = craftItemstackClass.getMethod("asNMSCopy", ItemStack.class);
             nmsGet.setAccessible(true);
             Object nmsStack = nmsGet.invoke(null, item);
@@ -349,6 +488,19 @@ public class NBTTag {
 
     public static NBTTag get(ItemStack item){
         try{
+            if(UtilsSB.superiorVersion()) { //> 1.18
+                Method m = craftItemstackClass.getMethod("asNMSCopy", ItemStack.class);
+                m.setAccessible(true);
+                Object nmsStack = m.invoke(null, item);
+                m.setAccessible(false);
+
+                Method getCompound = nmsItemstackClass.getMethod("s");
+                getCompound.setAccessible(true);
+                Object nbtCompound = getCompound.invoke(nmsStack);
+                getCompound.setAccessible(false);
+
+                return new NBTTag(nbtCompound);
+            }
             Method m = craftItemstackClass.getMethod("asNMSCopy", ItemStack.class);
             m.setAccessible(true);
             Object nmsStack = m.invoke(null, item);
