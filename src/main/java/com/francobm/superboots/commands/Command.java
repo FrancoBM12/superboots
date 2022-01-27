@@ -207,7 +207,7 @@ public class Command implements CommandExecutor {
                 return true;
             }else if(args[0].equalsIgnoreCase("reload")){
                 if(!player.hasPermission("superboots.*") || !player.hasPermission("superboots.reload")) return true;
-                plugin.getConfig().reload();
+                SuperBoots.getInstace().reloadConfig();
                 plugin.prefix = plugin.getConfig().getString("messages.prefix");
                 player.sendMessage(plugin.prefix + plugin.getConfig().getString("messages.reload"));
             }
@@ -233,7 +233,6 @@ public class Command implements CommandExecutor {
         if(itemStack.getType() == XMaterial.GOLDEN_BOOTS.parseMaterial()) return true;
         if(itemStack.getType() == XMaterial.IRON_BOOTS.parseMaterial()) return true;
         if(itemStack.getType() == XMaterial.DIAMOND_BOOTS.parseMaterial()) return true;
-        if(itemStack.getType() == XMaterial.NETHERITE_BOOTS.parseMaterial()) return true;
-        return false;
+        return itemStack.getType() == XMaterial.NETHERITE_BOOTS.parseMaterial();
     }
 }
