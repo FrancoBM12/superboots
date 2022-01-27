@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/SpecialBoots.iml" filepath="$PROJECT_DIR$/SpecialBoots.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SuperBoots.iml" filepath="$PROJECT_DIR$/SuperBoots.iml" />
     </modules>
   </component>
 </project>
